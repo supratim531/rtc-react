@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 // const socket = io.connect('http://localhost:8888');
 // const socket = io.connect('https://c2df-49-37-9-76.ngrok-free.app');
-socket = io('https://c2df-49-37-9-76.ngrok-free.app', {
+const socket = io('https://c2df-49-37-9-76.ngrok-free.app', {
   autoConnect: true,
   reconnection: true,
   extraHeaders: {
