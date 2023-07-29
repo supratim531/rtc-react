@@ -166,7 +166,8 @@ function Call3() {
 
   return (
     <div>
-      <button onClick={startRecord}>Start</button>
+      <h1>Contact with <a href="https://github.com/supratim531" target="_blank">Supratim</a> to properly use this basic prototype</h1>
+      <button style={{ fontSize: "2.25rem", lineHeight: "2.25rem" }} onClick={startRecord}>Start</button>
     </div>
   );
 }
