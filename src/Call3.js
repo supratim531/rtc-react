@@ -1,19 +1,19 @@
 import io from 'socket.io-client';
 import React, { useEffect, useMemo, useState } from 'react';
 
-// const socket = io.connect('http://localhost:8888');
-// const socket = io.connect('https://c2df-49-37-9-76.ngrok-free.app');
-const socket = io('https://2157-49-37-9-76.ngrok-free.app', {
-  autoConnect: true,
-  reconnection: true,
-  extraHeaders: {
-    "ngrok-skip-browser-warning": "69420",
-  }
-});
+const socket = io.connect('http://localhost:8888');
+// const socket = io('https://c2df-49-37-9-76.ngrok-free.app', {
+//   autoConnect: true,
+//   reconnection: true,
+//   extraHeaders: {
+//     "ngrok-skip-browser-warning": "69420",
+//   }
+// });
 
 function Call3() {
   const rrr = [];
   const [audioDriver, setAudioDriver] = useState(null);
+  const [isFirstBuffer, setIsFirstBuffer] = useState(true);
   const [mediaRecorder, setMediaRecorder] = useState(null);
 
   useMemo(() => {
@@ -21,11 +21,26 @@ function Call3() {
   }, []);
 
   function startRecord() {
-    mediaRecorder.start(250);
+    if (isFirstBuffer) {
+      console.log('100');
+      mediaRecorder.start(100);
+    } else {
+      console.log('250');
+      mediaRecorder.start(250);
+    }
+    console.log('MediaRecorder state implies:', mediaRecorder.state);
+  }
+
+  function startRecord2() {
+    console.log('200');
+    mediaRecorder.start(200);
     console.log('MediaRecorder state implies:', mediaRecorder.state);
   }
 
   function stopRecord() {
+    mediaRecorder.stop();
+    console.log(mediaRecorder.state);
+    mediaRecorder.onstop = (e) => { console.log("recorder stopped"); startRecord2(); };
   }
 
   useEffect(() => {
@@ -48,6 +63,11 @@ function Call3() {
     if (mediaRecorder) {
       mediaRecorder.ondataavailable = event => {
         socket.emit('call', { sound: event.data });
+
+        if (isFirstBuffer) {
+          setIsFirstBuffer(false);
+          stopRecord();
+        }
       };
     }
   });
