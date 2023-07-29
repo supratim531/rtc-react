@@ -167,7 +167,7 @@ function Call3() {
   return (
     <div>
       <h1>Contact with <a href="https://github.com/supratim531" style={{ textDecoration: "none" }} target="_blank">Supratim</a> to properly use this basic prototype</h1>
-      <button style={{ fontSize: "2.25rem", lineHeight: "2.25rem" }} onClick={startRecord}>Start</button>
+      <button style={{ fontSize: "2.25rem", lineHeight: "2.25rem" }} onClick={startRecord}>Start</button><br />
       <span style={{ color: "red" }}>NOTE:</span><span> If any problem occurs use reload</span>
     </div>
   );
