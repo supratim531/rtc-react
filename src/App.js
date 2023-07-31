@@ -1,12 +1,12 @@
-import React from 'react'
-import Call3 from './Call3'
+import React from 'react';
+import AudioCall from './AudioCall';
 
 function App() {
   return (
     <div>
-      <Call3 />
+      <AudioCall />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
